@@ -1,4 +1,4 @@
-# 📘 Fundamentos de Linux y Git
+# Fundamentos de Linux y Git
 
 ## PARTE 1: FUNDAMENTOS DE LINUX
 

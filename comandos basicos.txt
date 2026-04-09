@@ -1,0 +1,110 @@
+ ================================
+  TERRAFORM - COMANDOS BÁSICOS
+ ================================
+
+-Inicializar proyecto
+terraform init
+
+-Validar configuración
+terraform validate
+
+-Formatear código
+terraform fmt
+
+-Ver plan de ejecución (simulación)
+terraform plan
+
+-Aplicar cambios (crear infraestructura)
+terraform apply
+
+-Aplicar sin confirmación
+terraform apply -auto-approve
+
+-Destruir infraestructura
+terraform destroy
+
+-Destruir sin confirmación
+terraform destroy -auto-approve
+
+-Mostrar estado actual
+terraform show
+
+-Listar recursos del state
+terraform state list
+
+-Ver detalle de un recurso
+terraform state show <recurso>
+
+ ================================
+  AZURE CLI - COMANDOS BÁSICOS
+ ================================
+
+-Login en Azure
+az login
+
+-Ver suscripciones
+az account list
+
+-Seleccionar suscripción
+az account set --subscription "<ID>"
+
+-Crear Resource Group
+az group create --name MiGrupo --location westeurope
+
+-Listar Resource Groups
+az group list
+
+-Crear Virtual Network
+az network vnet create \
+  --name MiVNet \
+  --resource-group MiGrupo \
+  --subnet-name MiSubnet
+
+-Crear Máquina Virtual
+az vm create \
+  --resource-group MiGrupo \
+  --name MiVM \
+  --image UbuntuLTS \
+  --admin-username azureuser \
+  --generate-ssh-keys
+
+-Abrir puerto (ej: HTTP)
+az vm open-port --port 80 --resource-group MiGrupo --name MiVM
+
+-Crear Storage Account
+az storage account create \
+  --name mistorage123 \
+  --resource-group MiGrupo \
+  --location westeurope \
+  --sku Standard_LRS
+
+-Listar recursos
+az resource list --resource-group MiGrupo
+
+-Eliminar Resource Group (borra todo)
+az group delete --name MiGrupo --yes --no-wait
+
+ ================================
+            AZURE AD 
+ ================================
+
+-Ver usuario actual
+az ad signed-in-user show
+
+-Listar usuarios
+az ad user list
+
+ ================================
+         COST MANAGEMENT
+ ================================
+
+-Ver consumo (básico)
+az consumption usage list
+
+ ================================
+          FLUJO RÁPIDO
+ ================================
+
+-terraform init
+-terraform plan
+-terraform apply

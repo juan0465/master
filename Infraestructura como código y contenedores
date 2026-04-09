@@ -1,0 +1,248 @@
+                TERRAFORM                   
+
+PROVIDER → ¿Dónde trabajo?
+   Conecta con la nube (AWS, Azure, GCP)
+   
+   provider "aws" {
+     region = "us-east-1"
+   }
+
+--------------------------------------------------
+
+RESOURCE → ¿Qué creo?
+   Infraestructura (servidores, redes...)
+
+   resource "aws_instance" "mi_servidor" {
+     ami           = "ami-123456"
+     instance_type = "t2.micro"
+   }
+
+--------------------------------------------------
+
+VARIABLES → Flexible y reutilizable
+
+   variable "tipo_instancia" {
+     default = "t2.micro"
+   }
+
+   Uso:
+   instance_type = var.tipo_instancia
+
+--------------------------------------------------
+
+OUTPUT → Resultado final
+
+   output "ip_publica" {
+     value = aws_instance.mi_servidor.public_ip
+   }
+
+--------------------------------------------------
+
+STATE → Memoria de Terraform
+
+   terraform.tfstate
+
+    Guarda lo creado
+    Controla cambios
+    Evita duplicados
+
+--------------------------------------------------
+
+CICLO DE EJECUCIÓN
+
+   terraform init
+        ↓
+   terraform plan   → (simula cambios)
+        ↓
+   terraform apply  → (crea infraestructura)
+        ↓
+   terraform destroy→ (borra todo)
+
+--------------------------------------------------
+
+OBJETIVO PRÁCTICO
+
+   1. Escribir archivo main.tf
+   2. Inicializar:
+      terraform init
+
+   3. Ver cambios:
+      terraform plan
+
+   4. Crear infraestructura:
+      terraform apply
+
+   5. Eliminar (opcional):
+      terraform destroy
+
+--------------------------------------------------
+
+EJEMPLO COMPLETO
+
+provider "aws" {
+  region = "us-east-1"
+}
+
+variable "tipo_instancia" {
+  default = "t2.micro"
+}
+
+resource "aws_instance" "mi_servidor" {
+  ami           = "ami-123456"
+  instance_type = var.tipo_instancia
+}
+
+output "ip_publica" {
+  value = aws_instance.mi_servidor.public_ip
+}
+
+--------------------------------------------------
+
+RESUMEN FINAL
+
+Provider  → dónde
+Resource  → qué
+Variable  → flexible
+Output    → resultado
+
+Plan   → simula
+Apply  → ejecuta
+Destroy→ borra
+State  → memoria
+
+
+
+
+
+                   AZURE                     
+
+RESOURCE GROUP → “Contenedor de recursos”
+   Agrupa todos los recursos de un proyecto
+
+    Organización
+    Gestión conjunta
+    Eliminación en bloque
+
+   Ejemplo:
+   Proyecto Web → RG-WebApp
+
+--------------------------------------------------
+
+VIRTUAL MACHINES → “Servidores en la nube”
+   Máquinas virtuales (Windows/Linux)
+
+    Ejecutan aplicaciones
+    Escalables
+    Pago por uso
+
+   Ejemplo:
+   Web, bases de datos, apps
+
+--------------------------------------------------
+
+VIRTUAL NETWORKS → “Red privada”
+   Red donde se conectan los recursos
+
+    Control de tráfico
+    Subredes
+    Seguridad
+
+   Ejemplo:
+   VNet + Subnet → conecta VMs
+
+--------------------------------------------------
+
+STORAGE ACCOUNTS → “Almacenamiento”
+   Guarda datos en la nube
+
+    Blob (archivos)
+    Files (compartidos)
+    Tables / Queues
+
+   Ejemplo:
+   Imágenes, backups, logs
+
+--------------------------------------------------
+
+IDENTITY (AZURE AD) → “Control de acceso”
+   Gestión de usuarios y permisos
+
+    Usuarios
+    Roles (RBAC)
+    Autenticación
+
+   Ejemplo:
+   Quién puede acceder a qué
+
+--------------------------------------------------
+
+COST MANAGEMENT → “Control de gastos”
+
+    Monitorizar costes
+    Presupuestos
+    Optimización
+
+   Ejemplo:
+   Evitar gastar de más
+
+--------------------------------------------------
+
+ORGANIZACIÓN EN AZURE (CLAVE)
+
+   Subscription
+        ↓
+   Resource Group
+        ↓
+   Recursos (VM, VNet, Storage...)
+
+--------------------------------------------------
+
+OBJETIVO PRÁCTICO
+
+   Comprender:
+
+   Cómo se organizan los recursos
+      Subscription → Resource Group → Recursos
+
+   Cómo se despliega infraestructura
+      Crear Resource Group
+             ↓
+      Crear recursos dentro (VM, red, storage)
+             ↓
+      Configurar acceso y red
+             ↓
+      Monitorizar costes
+
+--------------------------------------------------
+
+DESPLIEGUE TÍPICO
+
+   1. Crear Resource Group
+   2. Crear Virtual Network
+   3. Crear Virtual Machine
+   4. Añadir Storage
+   5. Configurar Identity (usuarios/permisos)
+
+--------------------------------------------------
+
+EJEMPLO VISUAL
+
+   RG-WebApp
+      ├──  VNet
+      │     └── Subnet
+      ├──  VM (Servidor web)
+      ├──  Storage (archivos)
+      └──  Usuarios (Azure AD)
+
+--------------------------------------------------
+
+RESUMEN FINAL
+
+Resource Group → contenedor
+VM             → servidor
+VNet           → red
+Storage        → datos
+Identity       → acceso
+Cost           → dinero
+
+Azure = Organización + Control + Escalabilidad
